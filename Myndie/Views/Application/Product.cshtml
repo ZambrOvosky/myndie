@@ -1,0 +1,281 @@
+﻿<!-- Main Content -->
+<section class="content-wrap">
+
+    <!-- Banner -->
+    <div class="myndie-banner myndie-banner-parallax banner-top">
+        <div class="image" style="background-image: url('@ViewBag.App.ImageUrl')">
+        </div>
+
+        <div class="info">
+            <div>
+                <div class="container">
+                    <h1>@ViewBag.App.Name</h1>
+                    <br>
+                    @if(Session["Id"] != null)
+                    {
+                        if (ViewBag.SellItem)
+                        {
+                        <a href="@Url.Action("Library", "User")" class="btn btn-lg" title="Go to Library">Go to Library</a>
+                        }
+                        else {
+                            <a href="@Url.Action("AddtoCart", "Cart", new { appid = ViewBag.App.Id })" class="btn btn-lg" title="Add to Cart">US$ @ViewBag.App.Price</a>
+                        }
+                    }
+                    else
+                    {
+                            <a href="@Url.Action("UserLogin", "User")" class="btn btn-lg" title="Add to Cart">US$ @ViewBag.App.Price</a>
+                    }
+
+                    @if (Session["Id"] != null)
+                    {
+                        if (ViewBag.IsInWish)
+                        {
+                            <a href="@Url.Action("RemoveFromWishlist", "User", new { ApplicationId = ViewBag.App.Id, UserId = int.Parse(Session["Id"].ToString()), loc = "Product" })" class="btn btn-lg" data-toggle="tooltip" data-placement="top" title="Remove from Wishlist"><i class="entypo-heart"></i></a>
+                        }
+                        else
+                        {
+                            <a href="@Url.Action("AddtoWishlist", "User", new { ApplicationId = ViewBag.App.Id, UserId = int.Parse(Session["Id"].ToString()) })" class="btn btn-lg" data-toggle="tooltip" data-placement="top" title="Add to Wishlist"><i class="entypo-heart-empty"></i></a>
+                        }
+
+                    }
+                    else {
+                        <a href="@Url.Action("UserLogin", "User")" class="btn btn-lg" data-toggle="tooltip" data-placement="top" title="Add to Wishlist"><i class="entypo-heart-empty"></i></a>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /Banner -->
+    <!-- Images With Text -->
+    <div class="myndie-carousel gallery-popup">
+        @*<a class="angled-img" href="https://www.youtube.com/watch?v=shesQlPmIvc">
+                <div class="img">
+                    <img src="~/assets/images/game-bloodborne-500x375.jpg" alt="">
+                </div>
+                <i class="entypo-play icon"></i>
+            </a>*@
+        @foreach (var img in ViewBag.Img)
+        {
+            <a class="angled-img" href="@img.Url">
+                <div class="img">
+                    <img src="@img.Url" style="height: 270px" alt="">
+                </div>
+                <i class="entypo-search icon"></i>
+            </a>
+        }
+
+    </div>
+    <!-- /Images With Text -->
+
+
+    <div class="container myndie-store">
+
+        <div class="col-md-9 mb-0">
+            <!-- Post Info -->
+            <article>
+
+                <!-- Description -->
+                <h2 class="mt-0">Description                          
+                <div class="date">
+                    <i class="entypo-calendar"></i>Release Date: @ViewBag.App.ReleaseDate
+                </div>
+                </h2>
+                <div class="description">
+                    @ViewBag.App.Desc
+                    <div class="mb-0">
+                        <br />
+                        <img src="@ViewBag.Pegi.PhotoPath" style="height: 50px; width: 40px" title="@ViewBag.Pegi.Desc" />
+                    </div>
+                </div>
+                
+                <!-- /Description -->
+                <!-- Post Share -->
+                @*<div class="btn-group social-list social-likes" data-counters="no">
+                    <span class="btn btn-default facebook" title="Share link on Facebook"></span>
+                    <span class="btn btn-default twitter" title="Share link on Twitter"></span>
+                    <span class="btn btn-default plusone" title="Share link on Google+"></span>
+                    <span class="btn btn-default pinterest" title="Share image on Pinterest" data-media=""></span>
+                    <span class="btn btn-default vkontakte" title="Share link on VK"></span>
+                </div>*@
+                <!-- /Post Share -->
+            </article>
+            <!-- /Post Info -->
+            <!-- Information -->
+            @*<div class="requirements-block">
+                <h2>System Requirements</h2>
+                <div>
+                    <strong>OS:</strong> Windows 7
+                </div>
+                <div>
+                    <strong>Processor:</strong> Dual core from Intel or AMD at 2.8 GHz
+                </div>
+                <div>
+                    <strong>Memory:</strong> 4 GB RAM
+                </div>
+                <div>
+                    <strong>Graphics:</strong> nVidia GeForce 8600/9600GT, ATI/AMD Radeon HD2600/3600
+                </div>
+                <div>
+                    <strong>DirectX:</strong> Version 9.0c
+                </div>
+                <div>
+                    <strong>Network:</strong> Broadband Internet connection
+                </div>
+                <div>
+                    <strong>Hard Drive:</strong> 8 GB available space
+                </div>
+                <div>
+                    <strong>Sound Card:</strong> DirectX Compatible
+                </div>
+            </div>*@
+            <!-- /Information -->
+            <!-- developer -->
+            @*<div class="reviews-block mb-0">
+                <h2>Developer</h2>
+                <article>
+                    <div class="review-avatar pull-left">
+                        <img src="@ViewBag.DevUser.Picture" style="height:50px; width:50px;" alt="">
+                    </div>
+                    <div class="review-cont clearfix">
+                        <a class="review-author h4">@ViewBag.Dev.Name</a>
+                        <div class="review-text">
+                            <p>
+                               @ViewBag.Dev.Info
+                            </p>
+                        </div>
+                    </div>
+                </article>
+            </div>*@
+
+            <!-- /developer -->
+            <!-- developer -->
+            <div class="reviews-block mb-0">
+                <h2>About the developer</h2>
+                <article>
+                    <div class="review-avatar pull-left">
+                        <img src="@ViewBag.DevUser.Picture" alt="@ViewBag.Dev.Name">
+                    </div>
+                    <div class="review-cont clearfix">
+                        <a class="review-author h4">@ViewBag.Dev.Name</a>
+                        <div class="review-text">
+                            <p>
+                                @ViewBag.Dev.Info
+                            </p>
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+            <!-- /developer -->
+            <!-- Reviews -->
+            <div class="reviews-block mb-0">
+                <h2>Reviews <small></small></h2>
+
+                <!-- Reviews List -->
+                @if(ViewBag.App.Id != null)
+                {
+                    @Html.Action("_ListReview", "Review", new { Appid = ViewBag.App.Id})
+                }
+
+                <!-- /Reviews List -->
+                <!-- Review Form -->
+                @if(Session["Id"] != null && ViewBag.SellItem)
+                {
+                <h2>Add a Review</h2>
+                <form action="/Review/Register" class="review-form mb-0">
+                    <div class="review-cont clearfix">
+                        <div class="myndie-textarea">
+                            <textarea name="review.Desc" rows="5" placeholder="Your Review..."></textarea>
+                        </div>
+                        <input type="hidden" value="@ViewBag.App.Id" name="review.ApplicationId"/>
+                        <input type="hidden" value="@ViewBag.App.Version" name="review.Version"/>
+                        <div class="myndie-rating pull-right">
+                            <input type="radio" id="review-rate-5" name="review.value" value="5">
+                            <label for="review-rate-5">
+                                <i class="entypo-star"></i>
+                            </label>
+                            <input type="radio" id="review-rate-4" name="review.value" value="4">
+                            <label for="review-rate-4">
+                                <i class="entypo-star"></i>
+                            </label>
+                            <input type="radio" id="review-rate-3" name="review.value" value="3">
+                            <label for="review-rate-3">
+                                <i class="entypo-star"></i>
+                            </label>
+                            <input type="radio" id="review-rate-2" name="review.value" value="2">
+                            <label for="review-rate-2">
+                                <i class="entypo-star"></i>
+                            </label>
+                            <input type="radio" id="review-rate-1" name="review.value" value="1">
+                            <label for="review-rate-1">
+                                <i class="entypo-star"></i>
+                            </label>
+                        </div>
+                        <div class="clearfix"></div>
+                        <button type="submit" class="btn btn-default pull-right">Submit</button>
+                    </div>
+                </form>
+
+                }
+                <!-- /Review Form -->
+            </div>
+            <!-- /Reviews -->
+        </div>
+
+        @Html.Action("_GenreGameRightSide", "Application")
+    </div>
+
+    <!-- Related -->
+    <h2 class="container">Related</h2>
+    <br>
+    <div class="myndie-carousel">
+        @foreach (var sim in ViewBag.Similar)
+        {
+            <a class="angled-img" href="../../Application/Product/@sim.Id">
+                <div class="img">
+                    @if (sim.ImageUrl != null && sim.ImageUrl != "")
+                    {
+                        <img src="@sim.ImageUrl" style="height: 270px" alt="">
+                    }
+                    else
+                    {
+                        <img src="~/assets/images/game-kingdoms-of-amalur-reckoning-4-500x375.jpg" alt="">
+                    }
+
+                </div>
+                <div class="over-info">
+                    <div>
+                        <div>
+                            <h4>@sim.Name</h4>
+                            <div class="rating">
+                                @if (sim.Value >= 1)
+                                {
+                                    <i class="entypo-star"></i>
+                                }
+                                @if(sim.Value >= 2)
+                                {
+                                    <i class="entypo-star"></i>
+                                }
+                                 @if(sim.Value >= 3)
+                                {
+                                     <i class="entypo-star"></i>
+                                }
+                                  @if(sim.Value >= 4)
+                                {
+                                      <i class="entypo-star"></i>
+                                }
+                                   @if(sim.Value >= 5)
+                                {
+                                       <i class="entypo-star"></i>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        }
+
+    </div>
+    <!-- /Related -->
+</section>
+<!-- /Main Content -->

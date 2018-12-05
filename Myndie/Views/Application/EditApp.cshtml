@@ -1,0 +1,224 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_DeveloperLayout.cshtml";
+}
+<link href="~/assets/css/normalize.css" rel="stylesheet" />
+<link href="~/assets/css/demo.css" rel="stylesheet" />
+<link href="~/assets/css/component.css" rel="stylesheet" />
+<section class="no-padding-top">
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Form Elements -->
+            <div class="col-lg-12">
+                <div class="block">
+                    <div class="title"><strong>@ViewBag.App.Name</strong></div>
+                    <div class="block-body">
+                        <form class="form-horizontal" action="/Application/UpdateInfo" method="post">
+                            <input type="hidden" value="@ViewBag.App.Id" name="app.Id" />
+                            <div class="form-group row">
+                                <label class="col-sm-2 form-control-label">Name:</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" name="app.Name" value="@ViewBag.App.Name">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 form-control-label">Descripition:</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" name="app.Desc" value="@ViewBag.App.Desc">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 form-control-label">Price:</label>
+                                <div class="col-sm-10">
+                                    <input type="number" class="form-control" name="app.Price" value="@ViewBag.App.Price">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 form-control-label">Type:</label>
+                                <div class="col-sm-10">
+                                    <select class="form-control" name="app.TypeAppId">
+                                        @foreach (var t in ViewBag.Types) {
+                                            <option value="@t.Id" selected="@t.Id.Equals(ViewBag.App.TypeAppId)"> @t.Name</option>
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 form-control-label">Pegi:</label>
+                                <div class="col-sm-10">
+                                    <select class="form-control" name="app.PegiId">
+                                        @foreach (var p in ViewBag.Pegis) {
+                                            <option value="@p.Id" selected="@p.Id.Equals(ViewBag.App.PegiId)"> @p.Desc</option>
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="line"></div>
+                            <div class="form-group row">
+                                <div class="col-sm-12 m-1 ml-0">
+                                    <button type="submit" class="btn btn-primary btn-lg btn-block">Save changes</button>
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="no-padding-top">
+    <div class="container-fluid">
+        <div class="row">
+
+            <!-- Form Elements -->
+            <div class="col-lg-12">
+                <div class="block">
+                    <div class="title"><strong>Images</strong></div>
+                    <div class="block-body">
+                        <div class="container-fluid">
+                            <div class="row">
+                                @*MAIN IMAGE*@
+                                @foreach (var img in ViewBag.Imgs)
+                                {
+                                <div class="col-md-6 col-xl-6">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="media align-items-center">
+                                                <span style="background-image: url(@img.Url)"
+                                                      class="avatar avatar-xl mr-3"></span>
+                                                <div class="media-body overflow-hidden">
+                                                    <h5 class="card-text mb-0">Image</h5>
+                                                    <form action="/Application/EditPhoto" method="post"  enctype="multipart/form-data">
+                                                        <input type="hidden" value="@ViewBag.App.Id" name="id" />
+                                                        <input type="hidden" value="@img.Id" name="PhotoId" />
+                                                        <p class="card-text">
+                                                            
+                                                            <div class="form-group">
+                                                                <div class="col-md-12 float-left">
+                                                                    <input type="file" name="img" id="file-@img.Id" class="inputfile inputfile-@img.Id hide"  />
+                                                                    <label for="file-@img.Id"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z" /></svg> 
+                                                                    <span>Choose a file&hellip;</span>
+                                                                    </label>
+                                                                </div>
+                                                                     
+                                                                
+                                                                <div class="col-md-6 float-left">
+                                                                    <button type="button" class="btn btn-secondary btn-block mt-1 mb-1 ml-3 mr-3" onclick="location.href='@Url.Action("TurntoMain", "Application", new { id = img.Id, AppId = ViewBag.App.Id})'">Turn into Main</button>
+                                                                </div>
+                                                                <div class="col-md-6 float-left">
+                                                                    <button type="button" class="btn btn-secondary btn-block mt-1 mb-1 ml-3 mr-3" onclick="location.href='@Url.Action("RemoveImage", "Application", new { id = img.Id, AppId = ViewBag.App.Id})'">Remove</button>
+                                                                </div>
+                                                                <div class="col-md-12 float-left">
+                                                                    <button type="submit" class="btn btn-primary btn-block m-3">Save changes</button>
+                                                                </div> 
+                                                                                                                            
+                                                            </div>
+                                                        </p>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <div class="block">
+                    <div class="title"><strong>Add New Image</strong></div>
+                    <div class="block-body">
+                        <div class="container-fluid">
+                            <div class="row">
+                                @if (ViewBag.Imgs.Count < 5)
+                                {
+                                <div class="col-md-12">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="media align-items-center">
+                                                <div class="media-body overflow-hidden">
+                                                    <h5 class="card-text mb-0">New Image</h5>
+                                                    <form action="/Application/NewPhoto" method="post"  enctype="multipart/form-data">
+                                                        <p class="card-text">
+                                                            <input type="hidden" value="@ViewBag.App.Id" name="id" />
+                                                            <div class="form-group">
+                                                                <div class="col-md-12">                                                                   
+                                                                    <input type="file" name="img" id="file-01" class="inputfile inputfile-01 hide"  />
+                                                                    <label for="file-01"><svg xmlns="http://www.w3.org/2000/svg" width="20px" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z" /></svg> <span>Choose a file&hellip;</span></label>
+                                                                </div>
+                                                                <div class="col-md-12 float-left">
+                                                                    <button type="submit" class="btn btn-primary btn-lg btn-block m-3">Upload</button>
+                                                                </div>
+                                                            </div>
+                                                        </p>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                }
+                                else { <strong>You have the maximum amount of images</strong>}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <div class="block">
+                    <div class="title"><strong>Update Genres</strong></div>
+                    <div class="block-body">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <h4>Genres</h4>
+                                <form action="/Application/UpdateGenres" method="post"  enctype="multipart/form-data">
+                                    <div class="col-md-12">
+                                        <input type="hidden" value="@ViewBag.App.Id" name="appId" />
+                                    @for(int i = 0; i < ViewBag.Genres.Count; i++)
+                                    {
+                                        <label class="checkbox-inline col-md-2">
+                                            <input class="m-2" type="checkbox" name="genres[@i].IsChecked" checked="@ViewBag.Genres[i].IsChecked" value="true"/><span class="h4">@ViewBag.Genres[i].Name</span>
+                                            <input type="hidden" name="genres[@i].Id" value="@ViewBag.Genres[i].Id" />
+                                            <input type="hidden" name="genres[@i].Name" value="@ViewBag.Genres[i].Name" />
+                                        </label>
+                                    }
+                                    </div>
+                                    <div class="col-md-12 float-left">
+                                        <button type="submit" class="btn btn-primary btn-lg btn-block m-3">Update</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script src="~/assets/myndie/js/jquery.custom-file-input.js"></script>
+<script src="~/assets/myndie/js/jquery-v1.min.js"></script>
+<script src="~/assets/myndie/js/custom-file-input.js"></script>
+<script>
+    var inputs = document.getElementById('upload');
+    inputs.forEach.call(inputs, function (input) {
+        var label = input.nextElementSibling,
+            labelVal = label.innerHTML;
+
+        input.addEventListener('change', function (e) {
+            var fileName = '';
+            if (this.files && this.files.length > 1)
+                fileName = (this.getAttribute('data-multiple-caption') || '').replace('{count}', this.files.length);
+            else
+                fileName = e.target.value.split('\\').pop();
+
+            if (fileName)
+                label.querySelector('span').innerHTML = fileName;
+            else
+                label.innerHTML = labelVal;
+        });
+    });
+</script>

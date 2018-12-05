@@ -1,0 +1,61 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_ModeratorLayout.cshtml";
+}
+
+<div id="DivContent">
+    <section class="no-padding-top">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="block">
+                        <div class="title"><strong>Add Language</strong></div>
+                        <div class="block-body">
+                            <form class="form-inline" action="/Language/Validate">
+                                <div class="form-group">
+                                    <label class="sr-only">Name</label>
+                                    <input type="text" class="form-control" id="Name" placeholder="Name" value="@ViewBag.Lang.Name" required name="language.Name" />
+                                </div>
+                                <div class="form-group">
+                                    <input type="submit" value="Add" class="btn btn-primary">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12 block">
+                    <div class="title"><strong>Languages</strong></div>
+                    <div class="block-body">
+                        <div class="table-responsive">
+                            <table id="datatable1" style="width: 100%;" class="table">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center">#</th>
+                                        <th class="text-center">Name</th>
+                                        <th class="text-center">Actions</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var l in ViewBag.Langs)
+                                    {
+                                        <tr>
+                                            <td class="text-center"><a>@l.Id</a></td>
+                                            <td class="text-center"><a>@l.Name</a></td>
+                                            <td class="text-center"><a href="@Url.Action("Edit", "Language", new { id = l.Id})" class="btn sm btn-info ladda-button">Edit</a> <a href="@Url.Action("Remove", "Language", new { id = l.Id})" class="btn sm btn-primary ladda-button">Remove</a></td>
+                                        </tr>
+                                    }
+                                    
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+
+        </div>
+    </section>
+</div>

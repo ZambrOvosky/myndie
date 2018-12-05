@@ -1,0 +1,392 @@
+﻿    <!-- Banner -->
+<section class="myndie-banner banner-top myndie-banner-parallax">
+    <div class="image" style="background-image: url('../assets/images/banner-bg.jpg')">
+    </div>
+
+    <div class="info">
+        <div>
+            <div class="container">
+                <h1>Myndie Mobile:</h1>
+                <em>"Ready on your Smartphone"</em>
+                <br>
+                <br>
+                <br>
+                <a class="btn btn-lg" href="~/Application/SearchMyndie">Download</a>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- /Banner -->
+<!-- Best Sellers -->
+<h2 class="container h1">Featured <a href="@Url.Action("Explore", "Application", new { type = "Featured"})" class="btn pull-right">See More</a></h2>
+<div class="myndie-carousel">
+    @foreach (var app in ViewBag.BApps)
+    {
+        <a class="angled-img" href="~/Application/Product/@app.Id">
+            <div class="img img-offset">
+                @if (app.ImageUrl != null)
+                {
+                    <img src="@app.ImageUrl" style="height: 270px" alt="">
+                }
+                else
+                {
+                    <img src="~/assets/images/game-kingdoms-of-amalur-reckoning-4-500x375.jpg" alt="">
+                }
+
+            </div>
+            <div class="bottom-info">
+                <h4>@app.Name</h4>
+                <div class="row">
+                    <div class="col-xs-6">
+                        <div class="rating">
+                            @if (app.Value >= 1)
+                            {
+                                <i class="entypo-star"></i>
+                            }
+                            @if (app.Value >= 2)
+                            {
+                                <i class="entypo-star"></i>
+                            }
+                            @if (app.Value >= 3)
+                            {
+                                <i class="entypo-star"></i>
+                            }
+                            @if (app.Value >= 4)
+                            {
+                                <i class="entypo-star"></i>
+                            }
+                            @if (app.Value >= 5)
+                            {
+                                <i class="entypo-star"></i>
+                            }
+                        </div>
+                    </div>
+                    <div class="col-xs-6">
+                        <div class="price">
+                            US$ @app.Price
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    }
+
+</div>
+<!-- /Best Sellers -->
+<!-- New Apps -->
+<h2 class="container h1">New Apps <a href="@Url.Action("Explore", "Application", new { type = "Explore"})" class="btn pull-right">See More</a></h2>
+<div class="myndie-carousel">
+    @foreach (var app in ViewBag.NApps)
+    {
+        <a class="angled-img" href="~/Application/Product/@app.Id">
+            <div class="img img-offset">
+                @if (app.ImageUrl != null)
+                {
+                    <img src="@app.ImageUrl" style="height: 270px" alt="">
+                }
+                else
+                {
+                    <img src="~/assets/images/game-kingdoms-of-amalur-reckoning-4-500x375.jpg" alt="">
+                }
+            </div>
+            <div class="bottom-info">
+                <h4>@app.Name</h4>
+                <div class="row">
+                    <div class="col-xs-6">
+                        <div class="rating">
+                            @if (app.Value >= 1)
+                            {
+                                <i class="entypo-star"></i>
+                            }
+                            @if (app.Value >= 2)
+                            {
+                                <i class="entypo-star"></i>
+                            }
+                            @if (app.Value >= 3)
+                            {
+                                <i class="entypo-star"></i>
+                            }
+                            @if (app.Value >= 4)
+                            {
+                                <i class="entypo-star"></i>
+                            }
+                            @if (app.Value >= 5)
+                            {
+                                <i class="entypo-star"></i>
+                            }
+                        </div>
+                    </div>
+                    <div class="col-xs-6">
+                        <div class="price">
+                            US$ @app.Price
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    }
+
+</div>
+<!-- /New Apps -->
+@*<!-- Specials -->
+    <h2 class="container h1">Specials <a href="#!" class="btn pull-right">See More</a></h2>
+    <div class="myndie-carousel">
+        <a class="angled-img" href="#!">
+            <div class="img img-offset">
+                <img src="~/assets/images/game-dark-souls-ii-500x375.jpg" alt="">
+                <div class="badge bg-default">
+                    -20%
+                </div>
+            </div>
+            <div class="bottom-info">
+                <h4>Dark Souls II</h4>
+                <div class="row">
+                    <div class="col-xs-6">
+                        <div class="rating">
+                            @if (sim.Value >= 1)
+                                {
+                                    <i class="entypo-star"></i>
+                                }
+                                @if(sim.Value >= 2)
+                                {
+                                    <i class="entypo-star"></i>
+                                }
+                                 @if(sim.Value >= 3)
+                                {
+                                     <i class="entypo-star"></i>
+                                }
+                                  @if(sim.Value >= 4)
+                                {
+                                      <i class="entypo-star"></i>
+                                }
+                                   @if(sim.Value >= 5)
+                                {
+                                       <i class="entypo-star"></i>
+                                }
+                        </div>
+                    </div>
+                    <div class="col-xs-6">
+                        <div class="price">
+                            $39.99 <sup><del>$49.99</del></sup>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+        <a class="angled-img" href="#!">
+            <div class="img img-offset">
+                <img src="~/assets/images/game-lords-of-the-fallen-500x375.jpg" alt="">
+                <div class="badge bg-default">
+                    -25%
+                </div>
+            </div>
+            <div class="bottom-info">
+                <h4>Lords of the Fallen</h4>
+                <div class="row">
+                    <div class="col-xs-6">
+                        <div class="rating">
+                            <i class="entypo-star"></i>
+                            <i class="entypo-star"></i>
+                            <i class="entypo-star"></i>
+                            <i class="entypo-star-empty"></i>
+                            <i class="entypo-star-empty"></i>
+                        </div>
+                    </div>
+                    <div class="col-xs-6">
+                        <div class="price">
+                            $26.25 <sup><del>$35.00</del></sup>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+        <a class="angled-img" href="#!">
+            <div class="img img-offset">
+                <img src="~/assets/images/game-dragons-dogma-500x375.jpg" alt="">
+                <div class="badge bg-default">
+                    -30%
+                </div>
+            </div>
+            <div class="bottom-info">
+                <h4>Dragons Dogma</h4>
+                <div class="row">
+                    <div class="col-xs-6">
+                        <div class="rating">
+                            <i class="entypo-star"></i>
+                            <i class="entypo-star"></i>
+                            <i class="entypo-star"></i>
+                            <i class="entypo-star"></i>
+                            <i class="entypo-star-empty"></i>
+                        </div>
+                    </div>
+                    <div class="col-xs-6">
+                        <div class="price">
+                            $34.99 <sup><del>$49.99</del></sup>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+        <a class="angled-img" href="#!">
+            <div class="img img-offset">
+                <img src="~/assets/images/game-soul-sacrifice-500x375.jpg" alt="">
+                <div class="badge bg-success">
+                    -100%
+                </div>
+            </div>
+            <div class="bottom-info">
+                <h4>Soul Sacrifice</h4>
+                <div class="row">
+                    <div class="col-xs-6">
+                        <div class="rating">
+                            <i class="entypo-star"></i>
+                            <i class="entypo-star"></i>
+                            <i class="entypo-star"></i>
+                            <i class="entypo-star"></i>
+                            <i class="entypo-star-empty"></i>
+                        </div>
+                    </div>
+                    <div class="col-xs-6">
+                        <div class="price">
+                            <span class="text-success">FREE!</span>  <sup><del>$29.99</del></sup>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+    <!-- /Specials -->*@
+<!-- Preorder -->
+<div class="h2"></div>
+<section class="myndie-banner myndie-banner-parallax small">
+    <div class="image" style="background-image: url('../assets/images/banner-witcher-3.jpg');">
+    </div>
+
+    <div class="info container align-center">
+        <div>
+            <h2>Myndie<br></h2>
+
+            <!-- See countdown init in bottom of the page -->
+            <div class="countdown h2" data-end="2018/12/05"></div>
+
+            <br>
+            <br>
+            <a class="btn btn-lg" href="#!">Pre-Order</a>
+        </div>
+    </div>
+</section>
+<!-- /Preorder -->
+<!-- Latest News -->
+<h2 class="container h1">Latest Updates</h2>
+<section class="myndie-news container">
+    <!-- Single News Block -->
+    @foreach (var u in ViewBag.Updates)
+    {
+        <div class="news-one">
+            <div class="row vertical-gutter">
+                <div class="col-md-4">
+                    <a href="~/Application/Product/@u.ApplicationId" class="angled-img">
+                        @foreach (var a in ViewBag.AppsinUpdates)
+                        {
+                            if (u.ApplicationId == a.Id)
+                            {
+                                <div class="img">
+                                    <img src="@a.ImageUrl" style="height: 250px; width: 350px" alt="">
+                                </div>
+                                <div class="myndie-hexagon-rating myndie-hexagon-rating-small" data-max="5" data-size="50" title="@a.Value out of 5">
+                                    <span>@a.Value</span>
+                                </div>
+                            }
+                        }
+                    </a>
+                </div>
+                <div class="col-md-8">
+                    <div class="clearfix">
+                        @foreach (var a in ViewBag.AppsinUpdates)
+                        {
+                            if (u.ApplicationId == a.Id)
+                            {
+                                <h3 class="h2 pull-left m-0"><a href="~/Application/Product/@u.ApplicationId">@a.Name</a></h3>
+                            }
+                        }
+                        <span class="date pull-right"><i class="entypo-calendar"></i> Today</span>
+                    </div>
+                    <div class="description">
+                        <p>
+                            @u.Value
+                        </p>
+                    </div>
+                    <a href="~/Application/Product/@u.ApplicationId" class="btn read-more pull-left">See More</a>
+                </div>
+            </div>
+        </div>
+    }
+    <!-- /Single News Block -->
+</section>
+<!-- /Latest News -->
+<!-- Partners -->
+<section class="myndie-banner myndie-banner-parallax small mt-80">
+    <div class="image" style="background-image: url('../../assets/images/banner-bg.jpg');">
+    </div>
+
+    <div class="info align-center">
+        <div>
+            <h2 class="mb-40">Partners</h2>
+
+            <div class="row">
+                <div class="col-md-10 col-md-offset-1">
+                    <div class="owl-carousel" data-autoplay="6000">
+                        <div class="item">
+                            <a>
+                                <img src="~/assets/images/partner-logo-1.png" alt="">
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a>
+                                <img src="~/assets/images/partner-logo-2.png" alt="">
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a>
+                                <img src="~/assets/images/partner-logo-3.png" alt="">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- /Partners -->
+<!-- Features -->
+<h2 class="container h1">Why Buy from Us</h2>
+<section class="myndie-features container">
+    <div class="col-md-3 col-sm-6">
+        <a class="feature angled-bg">
+            <i class="entypo-infinity"></i>
+            <h3>Payment</h3>
+            <small>A diversity of payment methods</small>
+        </a>
+    </div>
+    <div class="col-md-3 col-sm-6">
+        <div class="feature angled-bg">
+            <i class="entypo-box"></i>
+            <h3>Games</h3>
+            <small>A large number of indie games</small>
+        </div>
+    </div>
+    <div class="col-md-3 col-sm-6">
+        <div class="feature angled-bg">
+            <i class="entypo-bag"></i>
+            <h3>Cheap</h3>
+            <small>Lowest prices on the Internet</small>
+        </div>
+    </div>
+    <div class="col-md-3 col-sm-6">
+        <div class="feature angled-bg">
+            <i class="entypo-users"></i>
+            <h3>Community</h3>
+            <small>Developer-User Community</small>
+        </div>
+    </div>
+</section>

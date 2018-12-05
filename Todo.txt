@@ -1,0 +1,88 @@
+﻿Arrumar JSon
+ 06/11
+Profile Dev e Mod  Done!
+Cadastro Mod       Done!  
+Mod Id p/ o User   Done!
+Pagina da Applcation Done!
+Link do jogo na index com sua Pagina Done!
+Nivel de Acesso nas Paginas de Cadastro   Done!
+Cadastro do User p/ o popup     Done!
+Moderadores n podem se Promover ou Rebaixar Done!
+
+Bugs:
+Tentar entrar na pagina de perfil de user sem estar logado  Done!
+Application ta registrando com id 1          Done!
+-/06/11
+
+Feitos:
+Aumentar num de soft apos reg de App
+Colocar U$ na pagina do jogo
+Pagina Prods
+Upload de Imgs de App()
+Upload de Arquivo no App
+Terminar tela de prod
+Foto User
+Mudar Foto do Developer
+Arrumar fotos dos jogos na tela inicial, tela do jogo
+Arrumar foto do Perfil na tela de Mod
+Pesquisa
+Carrinho
+Venda
+Download
+Foto Jogos no DevProfile
+Definir Foto padrao de User na user profile e Mod page
+Library
+Erros com imagens = Resolvido
+CRUD na Admin Page
+Pagina de Admin para Moderadores
+Sale tabela
+Upgrade to Mod
+Weekly Report
+Mudar AppDAO metodo GetTop5 -> Pegar mais vendidos
+Index - Mais Vendidos
+Pegar 10 mais vendidos na tela principal
+Confirmar Senha ao Registrar User
+Mudar Apps(Moderador) e Categories(Layout) para pegar o TypeApp
+Montlhy Report
+Impedir 2 compras
+Sistema de Review
+Resolvido Bug com Compras
+Terminar DevLayout
+WishList
+Arrumar Upload de nova foto no EditGame
+Botao See More Index
+Fazer Buscas do Menu Superior
+Edit Game botao
+Esqueceu a Senha 
+Tela Produto colocar info do dev
+Fazer tela de esqueci a senha exclusiva para o Android
+Dev Profile
+EditGame Buttons
+EditGame Att
+Erro Preco negativo
+Index Last News
+Link Game e Genre
+Fazer Busca por Genero e Linkar com a partial View RightSide
+Ultimo Grafico
+Developer dashboard
+Sales dev
+Review Contar para a app
+Approved tela de produtos no dashboard
+Text Area para desc
+Pagina de Admin Devs
+
+/Feitos
+
+AddGame Erro no Upload
+Formatar o preço com masked TxtBox
+
+Profile de User p/ outros
+Linkar esse profile na _ListReview
+
+Revisar Registers -> Crashs
+
+Formatar Release Date //N sei
+
+
+
+FOi?

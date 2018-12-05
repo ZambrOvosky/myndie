@@ -1,0 +1,127 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_ModeratorLayout.cshtml";
+}
+
+<div id="DivContent">
+    <section class="no-padding-top no-padding-bottom">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-3 col-sm-6">
+                    <div class="statistic-block block">
+                        <div class="progress-details d-flex align-items-end justify-content-between">
+                            <div class="title">
+                                <div class="icon"><i class="icon-user-1"></i></div><strong>New Users</strong>
+                            </div>
+                            <div class="number dashtext-1">@ViewBag.NewUser</div>
+                        </div>
+                        <div class="progress progress-template">
+                            <div role="progressbar" style="width: @ViewBag.NewUser%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" class="progress-bar progress-bar-template dashbg-1"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="statistic-block block">
+                        <div class="progress-details d-flex align-items-end justify-content-between">
+                            <div class="title">
+                                <div class="icon"><i class="icon-paper-and-pencil"></i></div><strong>New Games</strong>
+                            </div>
+                            <div class="number dashtext-3">@ViewBag.NewGame</div>
+                        </div>
+                        <div class="progress progress-template">
+                            <div role="progressbar" style="width: @ViewBag.NewGame%" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100" class="progress-bar progress-bar-template dashbg-3"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="statistic-block block">
+                        <div class="progress-details d-flex align-items-end justify-content-between">
+                            <div class="title">
+                                <div class="icon"><i class="icon-writing-whiteboard"></i></div><strong>New Softwares</strong>
+                            </div>
+                            <div class="number dashtext-4">@ViewBag.NewSoft</div>
+                        </div>
+                        <div class="progress progress-template">
+                            <div role="progressbar" style="width: @ViewBag.NewSoft%" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100" class="progress-bar progress-bar-template dashbg-4"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="statistic-block block">
+                        <div class="progress-details d-flex align-items-end justify-content-between">
+                            <div class="title">
+                                <div class="icon"><i class="icon-contract"></i></div><strong>New Mobile</strong>
+                            </div>
+                            <div class="number dashtext-4">@ViewBag.NewMob</div>
+                        </div>
+                        <div class="progress progress-template">
+                            <div role="progressbar" style="width: @ViewBag.NewMob%" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100" class="progress-bar progress-bar-template dashbg-4"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="no-padding-bottom">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="line-cahrt block">
+                        <canvas id="SellChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+
+
+<script src="~/assets/vendor/jquery/www_subdomain/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        "use strict";
+        Chart.defaults.global.defaultFontColor = "#75787c";
+        var Values = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.SaleCount) as String);
+        for (var i = 0; i <= 7; i++) {
+            if (Values[i] == null) {
+                var obj = { Date: Values[0].Date - i, TotalPrice: 0, Count: 0 };
+                Values[i] = obj;
+            }
+        }
+        var r = !0;
+        $(window).outerWidth() < 576 && (r = !1);
+        var a = $("#SellChart"), o = (new Chart(a, {
+            type: "line", options: {
+                scales: {
+                    xAxes: [{
+                        display: !0, gridLines: {
+                            display: !1
+                        }
+                    }
+                    ], yAxes: [{
+                        ticks: {
+                            max: 30
+                        }
+                        , display: !0, gridLines: {
+                            display: !1
+                        }
+                    }
+                    ]
+                }
+                , legend: {
+                    display: r
+                }
+            }
+            , data: {
+                labels: [Values[6].Date, Values[5].Date, Values[4].Date, Values[3].Date, Values[2].Date, Values[1].Date, Values[0].Date], datasets: [{
+                    label: "Sales Count", fill: !0, lineTension: .2, backgroundColor: "transparent", borderColor: "#864DD9", pointBorderColor: "#864DD9", pointHoverBackgroundColor: "#864DD9", borderCapStyle: "butt", borderDash: [], borderDashOffset: 0, borderJoinStyle: "miter", borderWidth: 2, pointBackgroundColor: "#fff", pointBorderWidth: 5, pointHoverRadius: 5, pointHoverBorderColor: "#fff", pointHoverBorderWidth: 2, pointRadius: 1, pointHitRadius: 0,
+                    data: [Values[6].Count, Values[5].Count, Values[4].Count, Values[3].Count, Values[2].Count, Values[1].Count, Values[0].Count] /*data: [2, 27, 20, 35, 30, 40, 33, 25, 39]*/, spanGaps: !1
+                }
+                ]
+            }
+        }
+        )
+        )
+    })
+</script>

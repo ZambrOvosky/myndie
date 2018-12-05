@@ -1,0 +1,71 @@
+﻿
+@{
+}
+<!-- Main Content -->
+<section class="content-wrap">
+
+    <!-- Banner -->
+    <div class="myndie-banner banner-top myndie-banner-parallax small">
+        <div class="image" style="background-image: url('../assets/images/banner-blog-bg.jpg')">
+        </div>
+
+        <div class="info">
+            <div>
+                <div class="container align-center">
+                    <h1>Upgrade to Developer</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /Banner -->
+
+    <div class="container myndie-content">
+        <center>
+            <form class="needs-validation" novalidate method="post" action="/Developer/Validate">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p>Name:</p>
+                        <div class="myndie-input">
+                            <input type="text" class="form-control" id="Name" value="@ViewBag.Dev.Name" placeholder="Name" required name="dev.Name" />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <p>Info:</p>
+                        <div class="myndie-input">
+                            <input type="text" class="form-control" id="Info" value="@ViewBag.Dev.Info" placeholder="Info" required name="dev.Info" />
+                        </div>
+                    </div>
+                </div>
+                <br /><br />
+                <div class="align-center">
+                    <button type="submit" class="btn btn-lg">Register</button>
+                </div>
+            </form>
+            <br />
+            <div class="@ViewBag.Class" style="width:80%;" role="alert">
+                @Html.ValidationMessage("Developer.Name")<br />
+                @Html.ValidationMessage("Developer.Info")<br />
+            </div>
+        </center>
+    </div>
+
+    <script>
+        (function () {
+            'use strict';
+            window.addEventListener('load', function () {
+                // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                var forms = document.getElementsByClassName('needs-validation');
+                // Loop over them and prevent submission
+                var validation = Array.prototype.filter.call(forms, function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (form.checkValidity() === false) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+                        form.classList.add('was-validated');
+                    }, false);
+                });
+            }, false);
+        })();
+    </script>
+</section>
